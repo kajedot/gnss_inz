@@ -4,22 +4,19 @@ from ublox_gps import UbloxGps
 
 class NmeaParser:
 
-    port = ''
-    gps = ''
-
     def __init__(self):
-        port = serial.Serial('/dev/serial0', baudrate=38400, timeout=1)
-        gps = UbloxGps(port)
+        self.port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+        self.gps = UbloxGps(self.port)
 
-    def listen(self, port, gps):
+    def listen(self):
 
         try:
             print("Listening for UBX Messages")
             while True:
                 try:
-                    print(gps.stream_nmea())
+                    print(self.gps.stream_nmea())
                 except (ValueError, IOError) as err:
                     print(err)
 
         finally:
-            port.close()
+            self.port.close()
