@@ -4,7 +4,7 @@ from nmea_parser.nmea_parser import NmeaParser
 
 def main():
 
-    parser = NmeaParser
+    parser = NmeaParser()
     parser.listen()
 
 
