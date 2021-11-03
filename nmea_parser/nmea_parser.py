@@ -29,6 +29,7 @@ class NmeaParser:
 
         heard = self.listen()
         fix = 0
+        splited = []
 
         if(heard):
             splited = heard.split(",")

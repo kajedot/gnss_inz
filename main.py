@@ -5,7 +5,9 @@ from nmea_parser.nmea_parser import NmeaParser
 def main():
 
     parser = NmeaParser()
-    parser.listen()
+
+    while 1:
+        print(parser.get_fix_mode())
 
 
 if __name__ == '__main__':
