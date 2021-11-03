@@ -12,7 +12,7 @@ class NmeaParser:
         response = ""
 
         try:
-            #print(self.gps.stream_nmea())
+            print(gps.stream_nmea())
             response = gps.stream_nmea()
 
         except (ValueError, IOError) as err:
