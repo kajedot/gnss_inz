@@ -7,7 +7,8 @@ def main():
     parser = NmeaParser()
 
     while 1:
-        print(parser.get_fix_mode())
+        print("Fix mode: " + parser.get_fix_mode())
+        print(parser.get_position())
 
 
 if __name__ == '__main__':

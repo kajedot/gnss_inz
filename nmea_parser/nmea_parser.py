@@ -37,5 +37,18 @@ class NmeaParser:
 
         return fix
 
+    def get_position(self):
 
+        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+        gps = UbloxGps(self.port)
+
+        position = (0, 0)
+
+        try:
+            geo = gps.geo_coords()
+            position = (geo.lon, geo.lat)
+        except (ValueError, IOError) as err:
+            print(err)
+
+        return position
 
