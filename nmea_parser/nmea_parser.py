@@ -6,20 +6,20 @@ class NmeaParser:
 
     def listen(self):
 
-        self.port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
-        self.gps = UbloxGps(self.port)
+        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+        gps = UbloxGps(port)
 
         response = ""
 
         try:
             #print(self.gps.stream_nmea())
-            response = self.gps.stream_nmea()
+            response = gps.stream_nmea()
 
         except (ValueError, IOError) as err:
             print(err)
 
         finally:
-            self.port.close()
+            port.close()
 
         return response
 
@@ -40,7 +40,7 @@ class NmeaParser:
     def get_position(self):
 
         port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
-        gps = UbloxGps(self.port)
+        gps = UbloxGps(port)
 
         position = (0, 0)
 
@@ -49,6 +49,9 @@ class NmeaParser:
             position = (geo.lon, geo.lat)
         except (ValueError, IOError) as err:
             print(err)
+
+        finally:
+            port.close()
 
         return position
 
