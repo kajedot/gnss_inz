@@ -10,13 +10,33 @@ class NmeaParser:
 
     def listen(self):
 
+        response = ""
+
         try:
-            print("Listening for UBX Messages")
-            while True:
-                try:
-                    print(self.gps.stream_nmea())
-                except (ValueError, IOError) as err:
-                    print(err)
+            #print(self.gps.stream_nmea())
+            response = self.gps.stream_nmea()
+
+        except (ValueError, IOError) as err:
+            print(err)
 
         finally:
             self.port.close()
+
+        return response
+
+
+    def get_fix_mode(self):
+
+        heard = self.listen()
+        fix = 0
+
+        if(heard):
+            splited = heard.split(",")
+
+        if splited[0] == "$GNGGA":
+            fix = splited[6]
+
+        return fix
+
+
+
