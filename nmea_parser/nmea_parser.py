@@ -24,7 +24,6 @@ class NmeaParser:
 
         return response
 
-
     def get_fix_mode(self):
 
         heard = self.listen()
@@ -34,8 +33,8 @@ class NmeaParser:
         if(heard):
             splited = heard.split(",")
 
-        if splited[0] == "$GNGGA":
-            fix = splited[6]
+            if splited[0] == "$GNGGA":
+                fix = splited[6]  # fix info is on the 6th position
 
         return fix
 
