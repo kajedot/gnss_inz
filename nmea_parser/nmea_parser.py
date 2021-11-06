@@ -1,5 +1,4 @@
 import serial
-from ublox_gps import UbloxGps
 
 
 class NmeaParser:
@@ -23,35 +22,34 @@ class NmeaParser:
 
         return response
 
-    def get_fix_mode(self):
-
+    def peel_gngga_message(self):
         heard = self.listen()
-        fix = 0
         splited = []
 
-        if(heard):
+        if (heard):
             splited = heard.split(",")
 
             if splited[0] == "$GNGGA":
-                fix = splited[6]  # fix info is on the 6th position
+                return splited
+
+    def get_fix_mode(self):
+
+        gngga = self.peel_gngga_message()
+        fix = 0
+
+        if gngga[0] == "$GNGGA":
+            fix = gngga[6]  # fix info is on the 6th position
 
         return fix
 
     def get_position(self):
 
-        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
-        gps = UbloxGps(port)
+        position = (0, '-', 0, '-')
 
-        position = (0, 0)
+        gngga = self.peel_gngga_message()
 
-        try:
-            geo = gps.geo_coords()
-            position = (geo.lon, geo.lat)
-        except (ValueError, IOError) as err:
-            print(err)
-
-        finally:
-            port.close()
+        if gngga[0] == "$GNGGA":
+            position = (gngga[2], gngga[3], gngga[4], gngga[5])
 
         return position
 
