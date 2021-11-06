@@ -23,7 +23,7 @@ class NmeaParser:
         heard = self.listen()
         splited = []
 
-        if (heard):
+        if (heard[0] == '$'):
             splited = heard.split(",")
 
             if splited[0] == "$GNGGA":
