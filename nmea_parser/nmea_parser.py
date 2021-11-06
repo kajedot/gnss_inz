@@ -23,11 +23,10 @@ class NmeaParser:
         heard = self.listen()
         splited = []
 
-        if (heard[0] == '$'):
+        if heard[0] == "$GNGGA":
             splited = heard.split(",")
 
-            if splited[0] == "$GNGGA":
-                return splited
+        return splited
 
     def get_fix_mode(self):
 
