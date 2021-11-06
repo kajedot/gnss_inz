@@ -6,21 +6,19 @@ class NmeaParser:
     def listen(self):
 
         port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
-        gps = UbloxGps(port)
 
-        response = ""
+        with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port:
+            port.flushInput()
+            try:
+                line_bytes = port.readline()  # reciving via serial port
 
-        try:
-            print(gps.stream_nmea())
-            response = gps.stream_nmea()
+            except (ValueError, IOError) as err:
+                print(err)
 
-        except (ValueError, IOError) as err:
-            print(err)
+            finally:
+                port.close()
 
-        finally:
-            port.close()
-
-        return response
+        return line_bytes
 
     def peel_gngga_message(self):
         heard = self.listen()
