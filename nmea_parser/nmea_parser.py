@@ -5,12 +5,11 @@ class NmeaParser:
 
     def listen(self):
 
-        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
-
         with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port:
             port.flushInput()
             try:
                 line_bytes = port.readline()  # reciving via serial port
+                print(line_bytes)
 
             except (ValueError, IOError) as err:
                 print(err)
