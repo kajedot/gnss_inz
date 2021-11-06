@@ -21,14 +21,12 @@ class NmeaParser:
 
     def peel_gngga_message(self):
         heard = self.listen()
-        splited = []
+        splited = [0]
 
         print(heard)
 
         if heard[0] == "$":
             splited = heard.split(",")
-        else:
-            splited[0] = ""
 
         return splited
 
