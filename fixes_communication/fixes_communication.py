@@ -7,7 +7,6 @@ class FixesCommunicationClient:
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.client_socket:
             self.client_socket.connect((address, port))
-            self.conn, addr = self.client_socket.accept()
 
     def send_data(self, data):
         try:
