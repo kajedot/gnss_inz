@@ -9,10 +9,10 @@ def main():
     fixes_comm = FixesCommunication(65432)
 
     while 1:
-        print("Fix mode: " + str( parser.get_fix_mode() ))
-        print(parser.get_position())
+        #print("Fix mode: " + str( parser.get_fix_mode() ))
+        #print(parser.get_position())
 
-        fixes_comm.send_data(parser.listen())
+        fixes_comm.send_data(parser.get_raw())
 
 
 if __name__ == '__main__':

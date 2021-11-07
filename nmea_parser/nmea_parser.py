@@ -55,3 +55,13 @@ class NmeaParser:
 
         return position
 
+    def get_raw(self):
+        with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port:
+            try:
+                line_bytes = port.readline()
+            except (ValueError, IOError) as err:
+                print(err)
+            finally:
+                port.close()
+
+        return line_bytes
