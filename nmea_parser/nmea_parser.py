@@ -4,6 +4,9 @@ from ublox_gps import UbloxGps
 
 class NmeaParser:
 
+    def __init__(self):
+        self.port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+
     def listen(self):
 
         port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
@@ -56,12 +59,16 @@ class NmeaParser:
         return position
 
     def get_raw(self):
-        with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port:
-            try:
-                line_bytes = port.readline()
-            except (ValueError, IOError) as err:
-                print(err)
-            finally:
-                port.close()
+        line_bytes = None
+
+        try:
+            line_bytes = self.port.readline()
+        except (ValueError, IOError) as err:
+            print(err)
+        finally:
+            self.port.close()
 
         return line_bytes
+
+    def __del__(self):
+        self.port.close()
