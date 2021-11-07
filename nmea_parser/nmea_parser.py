@@ -65,8 +65,6 @@ class NmeaParser:
             line_bytes = self.port.readline()
         except (ValueError, IOError) as err:
             print(err)
-        finally:
-            self.port.close()
 
         return line_bytes
 
