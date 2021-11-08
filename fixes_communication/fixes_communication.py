@@ -13,7 +13,7 @@ class FixesCommunicationClient:
     def receive_data(self, address, port):
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.client_socket:
-            self.client_socket.create_connection((address, port))
+            self.client_socket.connect((address, port))
 
         try:
             data = self.client_socket.recv(1024)
