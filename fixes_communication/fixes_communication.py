@@ -3,7 +3,7 @@ import socket
 
 class FixesCommunication:
 
-    def send_data(self, data):
+    def send_data(self):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
             server_socket.bind(('', 65432))
             server_socket.listen()
@@ -12,6 +12,6 @@ class FixesCommunication:
             with self.conn:
                 print('Connected by', self.addr)
                 try:
-                    self.conn.send(data)
+                    self.conn.send(b'eoo')
                 except (ValueError, IOError) as err:
                     print(err)
