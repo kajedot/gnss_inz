@@ -10,10 +10,8 @@ class FixesCommunication:
             conn, addr = server_socket.accept()
             with conn:
                 print('Connected by', addr)
-                while True:
-                    try:
-                        conn.send(data)
+                try:
+                    conn.send(data)
 
-                    except (ValueError, IOError) as err:
-                        print(err)
-                        break
+                except (ValueError, IOError) as err:
+                    print(err)
