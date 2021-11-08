@@ -11,8 +11,7 @@ class FixesCommunication:
 
             with self.conn:
                 print('Connected by', self.addr)
-                while 1:
-                    try:
-                        self.conn.send(data)
-                    except (ValueError, IOError) as err:
-                        print(err)
+                try:
+                    self.conn.send(data)
+                except (ValueError, IOError) as err:
+                    print(err)
