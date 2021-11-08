@@ -17,6 +17,6 @@ class FixesCommunicationClient:
 
         try:
             data = self.client_socket.recv(1024)
-            return data
+            print(data)
         except (ValueError, IOError) as err:
             print(err)
