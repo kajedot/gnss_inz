@@ -6,7 +6,7 @@ class FixesCommunicationClient:
     def __init__(self, address, port):
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.client_socket:
-            self.client_socket.connect((address, port))
+            self.client_socket.create_connection((address, port))
 
     def send_data(self, data):
         try:
