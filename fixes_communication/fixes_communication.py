@@ -12,6 +12,5 @@ class FixesCommunication:
                 print('Connected by', addr)
                 try:
                     conn.send(data)
-
                 except (ValueError, IOError) as err:
                     print(err)
