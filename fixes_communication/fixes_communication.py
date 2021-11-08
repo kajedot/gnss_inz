@@ -3,15 +3,17 @@ import socket
 
 class FixesCommunication:
 
-    def send_data(self, data):
+    def __init__(self):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
             server_socket.bind(('', 65432))
             server_socket.listen()
-            conn, addr = server_socket.accept()
-            with conn:
-                print('Connected by', addr)
-                try:
-                    conn.send(data)
+            self.conn, self.addr = server_socket.accept()
 
-                except (ValueError, IOError) as err:
-                    print(err)
+    def send_data(self, data):
+        with self.conn:
+            print('Connected by', self.addr)
+            try:
+                self.conn.send(data)
+
+            except (ValueError, IOError) as err:
+                print(err)
