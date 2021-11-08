@@ -12,6 +12,13 @@ class FixesCommunication:
             with self.conn:
                 print('Connected by', addr)
 
+                while 1:
+                    try:
+                        self.conn.send(b'eo')  # sending via lan socket
+
+                    except (ValueError, IOError) as err:
+                        print(err)
+
     def send_data(self, data):
         try:
             self.conn.send(data)  # sending via lan socket

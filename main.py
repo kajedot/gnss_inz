@@ -8,11 +8,11 @@ def main():
     #parser = NmeaParser()
     fixes_comm = FixesCommunication(65432)
 
-    while 1:
+    #while 1:
         #print("Fix mode: " + str( parser.get_fix_mode() ))
         #print(parser.get_raw())
 
-        fixes_comm.send_data(b'eo')
+        #fixes_comm.send_data(b'eo')
 
 
 if __name__ == '__main__':
