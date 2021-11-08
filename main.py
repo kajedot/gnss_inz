@@ -12,7 +12,7 @@ def main():
         #print("Fix mode: " + str( parser.get_fix_mode() ))
         #print(parser.get_raw())
 
-        fixes_comm.send_data()
+        fixes_comm.send_data(b'eoo')
 
 
 if __name__ == '__main__':
