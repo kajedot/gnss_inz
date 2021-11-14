@@ -1,4 +1,4 @@
-
+import time
 from nmea_parser.nmea_parser import NmeaParser
 from fixes_communication.fixes_communication import FixesCommunication
 
@@ -13,6 +13,8 @@ def main():
         #print(parser.get_raw())
 
         fixes_comm.send_data(b'eoo')
+
+        time.sleep(3)
 
 
 if __name__ == '__main__':
