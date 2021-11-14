@@ -9,7 +9,7 @@ class FixesCommunication:
             server_socket.listen()
             conn, addr = server_socket.accept()
             with conn:
-                print('Connected by ', addr)
+                print('Connected by', addr)
                 while True:
                     try:
                         conn.send(data)
