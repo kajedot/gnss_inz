@@ -6,7 +6,7 @@ class FixesCommunication(Thread):
 
     def __init__(self):
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_socket.bind(('', 65432))
+        server_socket.bind(('0.0.0.0', 65432))
         client_socket, address = server_socket.accept()
 
         Thread.__init__(self)
