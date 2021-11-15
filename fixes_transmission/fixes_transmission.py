@@ -57,3 +57,10 @@ class FixesTransmissionServer:
         t.daemon = True
         # start the thread
         t.start()
+
+    def __del__(self):
+        # close client sockets
+        for cs in self.client_sockets:
+            cs.close()
+        # close server socket
+        self.tcp_socket.close()
