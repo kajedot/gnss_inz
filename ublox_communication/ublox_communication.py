@@ -2,7 +2,7 @@ import serial
 from ublox_gps import UbloxGps
 
 
-class NmeaParser:
+class UbloxCommunication:
 
     def listen(self):
 
@@ -55,3 +55,7 @@ class NmeaParser:
 
         return position
 
+    def write(self, data):
+        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+
+        port.write(data)

@@ -1,7 +1,7 @@
 import socket
 
 
-class FixesCommunicationClient:
+class FixesTransmissionClient:
 
     def receive_data(self, address, port):
 
@@ -10,6 +10,6 @@ class FixesCommunicationClient:
             while True:
                 try:
                     data = web_socket.recv(1024)
-                    print(data)
+                    return data
                 except (ValueError, IOError) as err:
                     print(err)
