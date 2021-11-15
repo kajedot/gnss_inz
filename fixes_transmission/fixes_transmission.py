@@ -22,7 +22,7 @@ class FixesTransmissionServer:
         self.tcp_socket.listen(5)
         print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
 
-    def listen_for_client(self):
+    def listen_for_client(self, cs):
         """
         This function keep listening for a message from `cs` socket
         Whenever a message is received, broadcast it to all other connected clients
@@ -30,17 +30,17 @@ class FixesTransmissionServer:
         while True:
             try:
                 # keep listening for a message from `cs` socket
-                msg = self.tcp_socket.recv(1024).decode()
+                msg = cs.recv(1024).decode()
             except Exception as e:
                 # client no longer connected
                 # remove it from the set
                 print(f"[!] Error: {e}")
-                self.client_sockets.remove(self.tcp_socket)
+                self.client_sockets.remove(cs)
             else:
                 # if we received a message, replace the <SEP>
                 # token with ": " for nice printing
                 msg = msg.replace(self.separator_token, ": ")
-            # iterate over all connected sockets
+                # iterate over all connected sockets
             for client_socket in self.client_sockets:
                 # and send the message
                 client_socket.send(msg.encode())
