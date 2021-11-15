@@ -48,3 +48,6 @@ class FixesCommunication:
         # finally, send the message
         self.tcp_socket.send(to_send.encode())
 
+    def __del__(self):
+        self.tcp_socket.close()
+
