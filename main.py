@@ -5,7 +5,7 @@ from fixes_transmission.fixes_transmission import FixesTransmissionClient
 
 def main():
 
-    ublox_comm = UbloxCommunication()
+    #ublox_comm = UbloxCommunication()
     fixes_comm = FixesTransmissionClient()
 
     while 1:
@@ -13,8 +13,8 @@ def main():
         #print(parser.get_position())
 
         data = fixes_comm.receive_data("192.168.1.76", 65432)
-        print(data)
-        ublox_comm.write(data)
+        #print(data)
+        #ublox_comm.write(data)
 
 
 if __name__ == '__main__':
