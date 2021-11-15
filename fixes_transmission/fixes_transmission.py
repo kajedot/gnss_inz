@@ -10,7 +10,7 @@ class FixesTransmissionServer:
         SERVER_PORT = 5002  # port we want to use
         self.separator_token = "<SEP>"  # we will use this to separate the client name & message
 
-        # initialize list/set of all connected client'tcp_socket sockets
+        # initialize list/set of all connected client's sockets
         self.client_sockets = set()
         # create a TCP socket
         self.tcp_socket = socket.socket()
