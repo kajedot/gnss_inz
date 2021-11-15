@@ -4,15 +4,12 @@ from fixes_communication.fixes_communication import FixesCommunication
 
 
 def main():
-
     parser = NmeaParser()
-    fixes_comm = FixesCommunication()
-
     while 1:
         #print("Fix mode: " + str( parser.get_fix_mode() ))
         #print(parser.get_raw())
 
-        fixes_comm.send_data(parser.get_raw())
+        FixesCommunication.send_data(parser.get_raw())
 
         time.sleep(3)
 
