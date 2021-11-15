@@ -7,9 +7,8 @@ class FixesTransmissionClient:
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as web_socket:
             web_socket.connect((address, port))
-            while True:
-                try:
-                    data = web_socket.recv(1024)
-                    return data
-                except (ValueError, IOError) as err:
-                    print(err)
+            try:
+                data = web_socket.recv(1024)
+                print(data)
+            except (ValueError, IOError) as err:
+                print(err)
