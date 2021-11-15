@@ -13,7 +13,7 @@ def main():
         #print(parser.get_position())
 
         data = fixes_comm.receive_data("192.168.1.76", 65432)
-        #print(data)
+        print(data)
         #ublox_comm.write(data)
 
 

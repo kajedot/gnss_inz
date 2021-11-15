@@ -10,6 +10,6 @@ class FixesTransmissionClient:
             while True:
                 try:
                     data = web_socket.recv(1024)
-                    print(data)
+                    return data
                 except (ValueError, IOError) as err:
                     print(err)
