@@ -36,14 +36,9 @@ class FixesTransmissionServer:
                 # remove it from the set
                 print(f"[!] Error: {e}")
                 self.client_sockets.remove(cs)
-            else:
-                # if we received a message, replace the <SEP>
-                # token with ": " for nice printing
-                msg = msg.replace(self.separator_token, ": ")
-                # iterate over all connected sockets
+            # iterate over all connected sockets
             for client_socket in self.client_sockets:
-                # and send the message
-                client_socket.send(msg.encode())
+                print(msg.encode())
 
     def server_loop(self):
         # we keep listening for new connections all the time
