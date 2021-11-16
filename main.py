@@ -12,7 +12,7 @@ def main():
         #print("Fix mode: " + str( parser.get_fix_mode() ))
         #print(parser.get_position())
 
-        fixes_comm.server_loop()
+        fixes_comm.connections_listener()
         #ublox_comm.write(data)
 
 

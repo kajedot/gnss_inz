@@ -19,11 +19,8 @@ class FixesTransmissionServer:
         self.tcp_socket.listen(1)
         print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
 
-    def listen_for_client(self, cs):
-        """
-        This function keep listening for a message from `cs` socket
-        Whenever a message is received, broadcast it to all other connected clients
-        """
+    def reciver_loop(self, cs):
+
         while True:
             try:
                 # keep listening for a message from `cs` socket
@@ -32,13 +29,12 @@ class FixesTransmissionServer:
             except Exception as e:
                 print(f"[!] Error: {e}")
 
-    def server_loop(self):
+    def connections_listener(self):
         # we keep listening for new connections all the time
         client_socket, client_address = self.tcp_socket.accept()
         print(f"[+] {client_address} connected.")
-
         # start a new thread that listens for each client's messages
-        t = Thread(target=self.listen_for_client, args=(client_socket,))
+        t = Thread(target=self.reciver_loop, args=(client_socket,))
         # make the thread daemon so it ends whenever the main thread ends
         t.daemon = True
         # start the thread
