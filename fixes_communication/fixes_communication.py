@@ -37,7 +37,7 @@ class FixesCommunication:
         self.thread.start()
 
     def client_loop(self, to_send):
-        self.tcp_socket.send(to_send)
+        self.tcp_socket.send(to_send.encode())
 
     def __del__(self):
         self.tcp_socket.close()
