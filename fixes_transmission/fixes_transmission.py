@@ -38,7 +38,7 @@ class FixesTransmissionServer:
                 self.client_sockets.remove(cs)
             # iterate over all connected sockets
             for client_socket in self.client_sockets:
-                print(msg.encode())
+                print(msg)
 
     def server_loop(self):
         # we keep listening for new connections all the time
