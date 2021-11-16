@@ -36,16 +36,7 @@ class FixesCommunication:
         # start the thread
         self.thread.start()
 
-    def client_loop(self):
-        # input message we want to send to the server
-        to_send = "eoo"
-        # a way to exit the program
-        if to_send.lower() == 'q':
-            return
-        # add the datetime, name & the color of the sender
-        date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        to_send = f"[{date_now}] {self.name}{self.separator_token}{to_send}"
-        # finally, send the message
+    def client_loop(self, to_send):
         self.tcp_socket.send(to_send.encode())
 
     def __del__(self):
