@@ -6,7 +6,7 @@ class FixesTransmissionServer:
 
     def __init__(self, ublox_comm):
         self.ublox_comm = ublox_comm
-
+        self.client_sockets = set()
         # server'tcp_socket IP address
         SERVER_HOST = "0.0.0.0"
         SERVER_PORT = 5002  # port we want to use
@@ -32,11 +32,13 @@ class FixesTransmissionServer:
                 self.ublox_comm.write(msg)
             except Exception as e:
                 print(f"[!] Error: {e}")
+                self.client_sockets.remove(cs)
 
     def connections_listener(self):
         # we keep listening for new connections all the time
         client_socket, client_address = self.tcp_socket.accept()
         print(f"[+] {client_address} connected.")
+        self.client_sockets.add(client_socket)
         # start a new thread that listens for each client's messages
         t = Thread(target=self.reciver_loop, args=(client_socket,))
         # make the thread daemon so it ends whenever the main thread ends
@@ -45,5 +47,7 @@ class FixesTransmissionServer:
         t.start()
 
     def __del__(self):
+        for cs in self.client_sockets:
+            cs.close()
         # close server socket
         self.tcp_socket.close()
