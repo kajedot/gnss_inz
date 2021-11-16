@@ -31,14 +31,13 @@ class FixesTransmissionServer:
             try:
                 # keep listening for a message from `cs` socket
                 msg = cs.recv(1024)
+                print(msg)
             except Exception as e:
                 # client no longer connected
                 # remove it from the set
                 print(f"[!] Error: {e}")
                 self.client_sockets.remove(cs)
-            # iterate over all connected sockets
-            for client_socket in self.client_sockets:
-                print(msg)
+
 
     def server_loop(self):
         # we keep listening for new connections all the time
