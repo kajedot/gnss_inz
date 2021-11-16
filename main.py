@@ -7,8 +7,8 @@ def main():
     fixes_comm = FixesTransmissionServer(ublox_comm)
 
     while 1:
-        #print("Fix mode: " + str( parser.get_fix_mode() ))
-        #print(parser.get_position())
+        print("Fix mode: " + str( ublox_comm.get_fix_mode() ))
+        print(ublox_comm.get_position())
 
         fixes_comm.connections_listener()
         #ublox_comm.write(data)
