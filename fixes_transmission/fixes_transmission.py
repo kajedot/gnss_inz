@@ -27,6 +27,7 @@ class FixesTransmissionServer:
             try:
                 # keep listening for a message from `cs` socket
                 msg = cs.recv(1024)
+                assert msg
                 print(msg)
                 self.ublox_comm.write(msg)
             except Exception as e:
