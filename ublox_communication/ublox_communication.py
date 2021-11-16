@@ -46,7 +46,7 @@ class UbloxCommunication:
 
         try:
             geo = gps.geo_coords()
-            position = (geo.lon, geo.lat)
+            position = (geo.lat, geo.lon)
         except (ValueError, IOError) as err:
             print(err)
 
