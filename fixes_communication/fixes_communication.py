@@ -38,7 +38,7 @@ class FixesCommunication:
 
     def client_loop(self):
         # input message we want to send to the server
-        to_send = input()
+        to_send = "eoo"
         # a way to exit the program
         if to_send.lower() == 'q':
             return
