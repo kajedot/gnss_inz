@@ -10,7 +10,7 @@ def main():
         #print("Fix mode: " + str( parser.get_fix_mode() ))
         #print(parser.get_raw())
 
-        communication.client_loop("eoeo ")
+        communication.client_loop(parser.get_raw())
 
 
 if __name__ == '__main__':
