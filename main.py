@@ -9,8 +9,9 @@ def main():
     while 1:
         #print("Fix mode: " + str( parser.get_fix_mode() ))
         #print(parser.get_raw())
-
-        communication.client_loop("eoeo ")
+        raw = parser.get_raw()
+        print(raw)
+        communication.client_loop(raw)
 
 
 if __name__ == '__main__':
