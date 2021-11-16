@@ -21,7 +21,7 @@ class FixesCommunication:
         print("[+] Connected.")
         self.name = "kdt"
 
-        self.start_thread()
+        #self.start_thread()
 
     def listen_for_messages(self):
         while True:
