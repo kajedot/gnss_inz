@@ -4,7 +4,9 @@ from threading import Thread
 
 class FixesTransmissionServer:
 
-    def __init__(self):
+    def __init__(self, ublox_comm):
+        self.ublox_comm = ublox_comm
+
         # server'tcp_socket IP address
         SERVER_HOST = "0.0.0.0"
         SERVER_PORT = 5002  # port we want to use
@@ -26,6 +28,7 @@ class FixesTransmissionServer:
                 # keep listening for a message from `cs` socket
                 msg = cs.recv(1024)
                 print(msg)
+                self.ublox_comm.write(msg)
             except Exception as e:
                 print(f"[!] Error: {e}")
 
