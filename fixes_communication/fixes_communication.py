@@ -17,7 +17,7 @@ class FixesCommunication:
         self.tcp_socket.connect((SERVER_HOST, SERVER_PORT))
         print("[+] Connected.")
 
-    def client_loop(self, to_send):
+    def send_fix(self, to_send):
         self.tcp_socket.send(to_send)
 
     def __del__(self):

@@ -13,7 +13,7 @@ def main():
         raw = parser.get_raw()
         if raw:
             print(raw)
-            communication.client_loop(raw)
+            communication.send_fix(raw)
 
 
 if __name__ == '__main__':
