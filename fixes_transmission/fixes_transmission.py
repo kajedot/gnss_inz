@@ -8,7 +8,6 @@ class FixesTransmissionServer:
         # server'tcp_socket IP address
         SERVER_HOST = "0.0.0.0"
         SERVER_PORT = 5002  # port we want to use
-        self.separator_token = "<SEP>"  # we will use this to separate the client name & message
 
         # create a TCP socket
         self.tcp_socket = socket.socket()
@@ -17,7 +16,7 @@ class FixesTransmissionServer:
         # bind the socket to the address we specified
         self.tcp_socket.bind((SERVER_HOST, SERVER_PORT))
         # listen for upcoming connections
-        self.tcp_socket.listen(5)
+        self.tcp_socket.listen(1)
         print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
 
     def listen_for_client(self, cs):
