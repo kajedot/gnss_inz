@@ -10,8 +10,6 @@ class FixesTransmissionServer:
         SERVER_PORT = 5002  # port we want to use
         self.separator_token = "<SEP>"  # we will use this to separate the client name & message
 
-        # initialize list/set of all connected client's sockets
-        self.client_sockets = set()
         # create a TCP socket
         self.tcp_socket = socket.socket()
         # make the port as reusable port
@@ -33,18 +31,13 @@ class FixesTransmissionServer:
                 msg = cs.recv(1024)
                 print(msg)
             except Exception as e:
-                # client no longer connected
-                # remove it from the set
                 print(f"[!] Error: {e}")
-                self.client_sockets.remove(cs)
-
 
     def server_loop(self):
         # we keep listening for new connections all the time
         client_socket, client_address = self.tcp_socket.accept()
         print(f"[+] {client_address} connected.")
-        # add the new connected client to connected sockets
-        self.client_sockets.add(client_socket)
+
         # start a new thread that listens for each client's messages
         t = Thread(target=self.listen_for_client, args=(client_socket,))
         # make the thread daemon so it ends whenever the main thread ends
@@ -53,8 +46,5 @@ class FixesTransmissionServer:
         t.start()
 
     def __del__(self):
-        # close client sockets
-        for cs in self.client_sockets:
-            cs.close()
         # close server socket
         self.tcp_socket.close()
