@@ -35,7 +35,7 @@ class UbloxCommunication:
             if splited[0] == "$GNGGA":
                 fix = splited[6]  # fix info is on the 6th position
 
-        return f"{fix} ({heard})"
+        return f"{fix} ({heard.strip()})"
 
     def get_position(self):
 
