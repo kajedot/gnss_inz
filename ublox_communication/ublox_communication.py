@@ -4,6 +4,9 @@ from ublox_gps import UbloxGps
 
 class UbloxCommunication:
 
+    def __init__(self):
+        self.fix = 0
+
     def listen(self):
 
         port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
@@ -23,19 +26,16 @@ class UbloxCommunication:
 
         return response
 
-    def get_fix_mode(self):
+    def check_fix_mode(self):
 
         heard = self.listen()
-        fix = 0
-        splited = []
 
-        if(heard):
+        if heard:
             splited = heard.split(",")
 
             if splited[0] == "$GNGGA":
-                fix = splited[6]  # fix info is on the 6th position
-
-        return fix #f"{fix} ({heard.strip()})"
+                self.fix = splited[6]  # fix info is on the 6th position
+                print(heard)
 
     def get_position(self):
 

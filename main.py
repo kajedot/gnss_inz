@@ -9,7 +9,8 @@ def main():
     fixes_comm.connections_listener()
 
     while 1:
-        print("\nFix mode: " + str( ublox_comm.get_fix_mode() ))
+        ublox_comm.check_fix_mode()
+        print("\nFix mode: " + str(ublox_comm.fix))
         print(ublox_comm.get_position())
 
         #ublox_comm.write(data)
