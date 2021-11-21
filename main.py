@@ -4,9 +4,9 @@ from ublox_communication.ublox_communication import UbloxCommunication
 
 def main():
     ublox_comm = UbloxCommunication()
-    fixes_comm = FixesTransmissionServer(ublox_comm)
+    #fixes_comm = FixesTransmissionServer(ublox_comm)
 
-    fixes_comm.connections_listener()
+    #fixes_comm.connections_listener()
 
     while 1:
         ublox_comm.check_fix_mode()
