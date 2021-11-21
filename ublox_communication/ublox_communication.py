@@ -27,22 +27,16 @@ class UbloxCommunication:
 
         return 0
 
-    def check_fix_mode(self):
+    def get_fix_mode(self):
+        serial_line = self.get_nmea_message(b'GNGGA')
 
-        serial_lines = self.lines_from_serial()
+        if serial_line:
+            splited = serial_line.split(",")
+            return splited[6]  # fix info is on the 6th position
 
-        print(serial_lines)
-        print(type(serial_lines))
-
-        if serial_lines:
-            splited = serial_lines.split(",")
-
-            if splited[0] == "$GNGGA":
-                self.fix = splited[6]  # fix info is on the 6th position
-                print(serial_lines)
+        return 0
 
     def get_position(self):
-
         port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
         gps = UbloxGps(port)
 

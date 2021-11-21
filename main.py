@@ -10,6 +10,7 @@ def main():
         #print("\nFix mode: " + str(ublox_comm.fix))
         #print(ublox_comm.get_position())
         print(ublox_comm.get_nmea_message(b'GNGGA'))
+        print(ublox_comm.get_fix_mode())
 
 
 if __name__ == '__main__':
