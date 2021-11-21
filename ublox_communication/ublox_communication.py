@@ -46,7 +46,7 @@ class UbloxCommunication:
 
             latitude = float(splited[2].decode("utf-8"))/100
             latitude_dir = splited[3].decode("utf-8")
-            longitude = float(splited[4].decode("utf-8")/100)
+            longitude = float(splited[4].decode("utf-8"))/100
             longitude_dir = splited[5].decode("utf-8")
 
             position = (latitude, latitude_dir, longitude, longitude_dir)
