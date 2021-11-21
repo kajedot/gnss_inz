@@ -10,7 +10,7 @@ class UbloxCommunication:
     def lines_from_serial(self):
         lines = set()
         with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port_in:
-            for x in range(30):
+            for x in range(12):
                 try:
                     lines.add(port_in.readline())
                 except (ValueError, IOError) as err:
@@ -26,8 +26,8 @@ class UbloxCommunication:
             print(splited[0])
             if splited[0] == (b'$' + message_id):
                 return line
-            else:
-                return 0
+
+        return 0
 
     def check_fix_mode(self):
 
