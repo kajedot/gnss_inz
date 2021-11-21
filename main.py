@@ -6,7 +6,7 @@ def main():
     ublox_comm = UbloxCommunication()
 
     while 1:
-        ublox_comm.check_fix_mode()
+        #ublox_comm.check_fix_mode()
         #print("\nFix mode: " + str(ublox_comm.fix))
         #print(ublox_comm.get_position())
 
