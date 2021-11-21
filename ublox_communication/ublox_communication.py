@@ -15,7 +15,7 @@ class UbloxCommunication:
                     lines.add(port_in.readline())
                 except (ValueError, IOError) as err:
                     print(err)
-        print(lines)
+        return lines
 
     def get_nmea_message(self, message_id):
         serial_lines = self.lines_from_serial()
