@@ -45,9 +45,10 @@ class UbloxCommunication:
             splited = serial_line.split(b',')
 
             latitude = float(splited[2])/100
-            #latitude = latitude.split()
+            latitude = latitude + (latitude % 1)/0.6
             latitude_dir = splited[3].decode("utf-8")
             longitude = float(splited[4])/100
+            longitude = longitude + (longitude % 1) / 0.6
             longitude_dir = splited[5].decode("utf-8")
 
             position = (latitude, latitude_dir, longitude, longitude_dir)
