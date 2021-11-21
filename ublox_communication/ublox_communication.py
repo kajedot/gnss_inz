@@ -21,8 +21,8 @@ class UbloxCommunication:
         serial_lines = self.lines_from_serial()
 
         for line in serial_lines:
-            print(serial_lines)
-            print(type(serial_lines))
+            print(line)
+            print(type(line))
             splited = line.split(",")
             if splited[0] == ('$' + message_id):
                 return line
