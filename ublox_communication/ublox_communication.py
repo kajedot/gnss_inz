@@ -53,6 +53,24 @@ class UbloxCommunication:
 
         return position
 
+    def get_position_qwick(self):
+
+        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+        gps = UbloxGps(port)
+
+        position = (0, 0)
+
+        try:
+            geo = gps.geo_coords()
+            position = (geo.lat, geo.lon)
+        except (ValueError, IOError) as err:
+            print(err)
+
+        finally:
+            port.close()
+
+        return position
+
     def write(self, data):
         port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
 
