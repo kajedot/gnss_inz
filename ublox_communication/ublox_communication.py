@@ -31,7 +31,7 @@ class UbloxCommunication:
         serial_line = self.get_nmea_message(b'GNGGA')
 
         if serial_line:
-            splited = serial_line.split(",")
+            splited = serial_line.split(b',')
             return splited[6]  # fix info is on the 6th position
 
         return 0
