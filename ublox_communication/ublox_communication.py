@@ -4,8 +4,8 @@ from ublox_gps import UbloxGps
 
 class UbloxCommunication:
 
-    def __init__(self):
-        self.fix = 0
+    # def __init__(self):
+    #     self.fix = 0
 
     def lines_from_serial(self):
         lines = set()

@@ -14,14 +14,13 @@ def lines_from_serial():
     print(lines)
 
 def main():
-    #ublox_comm = UbloxCommunication()
+    ublox_comm = UbloxCommunication()
 
     while 1:
         #ublox_comm.check_fix_mode()
         #print("\nFix mode: " + str(ublox_comm.fix))
         #print(ublox_comm.get_position())
-
-        lines_from_serial()
+        ublox_comm.lines_from_serial()
 
 
 if __name__ == '__main__':
