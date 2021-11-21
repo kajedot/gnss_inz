@@ -15,7 +15,6 @@ class UbloxCommunication:
                     lines.add(port_in.readline())
                 except (ValueError, IOError) as err:
                     print(err)
-        print(lines)
         return lines
 
     def get_nmea_message(self, message_id: bytes):
@@ -23,7 +22,6 @@ class UbloxCommunication:
 
         for line in serial_lines:
             splited = line.split(b',')
-            print(splited[0])
             if splited[0] == (b'$' + message_id):
                 return line
 
