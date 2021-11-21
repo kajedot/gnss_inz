@@ -9,7 +9,7 @@ def main():
         #ublox_comm.check_fix_mode()
         #print("\nFix mode: " + str(ublox_comm.fix))
         #print(ublox_comm.get_position())
-        print(ublox_comm.lines_from_serial())
+        print(ublox_comm.get_nmea_message("GNGGA"))
 
 
 if __name__ == '__main__':
