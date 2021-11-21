@@ -9,8 +9,8 @@ class UbloxCommunication:
 
     def lines_from_serial(self):
         lines = set()
-        with serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=1) as port_in:
-            for x in range(20):
+        with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port_in:
+            for x in range(50):
                 try:
                     lines.add(port_in.readline())
                 except (ValueError, IOError) as err:
