@@ -9,17 +9,17 @@ class UbloxCommunication:
 
     def lines_from_serial(self):
         lines = set()
-        with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port:
+        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
 
-            for i in range(20):
-                try:
-                    line = port.readline()
-                    print(line)
-                    lines.add(line)
-                except (ValueError, IOError) as err:
-                    print(err)
-                finally:
-                    port.close()
+        for i in range(20):
+            try:
+                line = port.readline()
+                print(line)
+                lines.add(line)
+            except (ValueError, IOError) as err:
+                print(err)
+            finally:
+                port.close()
 
         return lines
 
