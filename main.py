@@ -11,6 +11,7 @@ def main():
         #print(ublox_comm.get_position())
         print(ublox_comm.get_nmea_message(b'GNGGA'))
         print(ublox_comm.get_fix_mode())
+        print(ublox_comm.get_position())
 
 
 if __name__ == '__main__':

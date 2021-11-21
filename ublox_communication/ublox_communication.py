@@ -30,26 +30,26 @@ class UbloxCommunication:
     def get_fix_mode(self):
         serial_line = self.get_nmea_message(b'GNGGA')
 
-        if serial_line:
+        if serial_line != 0:
             splited = serial_line.split(b',')
             return splited[6].decode("utf-8")  # fix info is on the 6th position
 
         return 0
 
     def get_position(self):
-        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
-        gps = UbloxGps(port)
+        position = (0, '-', 0, '-')
 
-        position = (0, 0)
+        serial_line = self.get_nmea_message(b'GNGGA')
 
-        try:
-            geo = gps.geo_coords()
-            position = (geo.lat, geo.lon)
-        except (ValueError, IOError) as err:
-            print(err)
+        if serial_line != 0:
+            splited = serial_line.split(b',')
 
-        finally:
-            port.close()
+            latitude = splited[2].decode("utf-8")
+            latitude_dir = splited[3].decode("utf-8")
+            longitude = splited[4].decode("utf-8")
+            longitude_dir = splited[5].decode("utf-8")
+
+            position = (latitude, latitude_dir, longitude, longitude_dir)
 
         return position
 
