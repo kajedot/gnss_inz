@@ -23,7 +23,7 @@ class UbloxCommunication:
         for line in serial_lines:
             print(line)
             print(type(line))
-            splited = line.split(",")
+            splited = line.split(b',')
             if splited[0] == ('$' + message_id):
                 return line
             else:
