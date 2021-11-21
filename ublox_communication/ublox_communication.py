@@ -17,13 +17,13 @@ class UbloxCommunication:
                     print(err)
         return lines
 
-    def get_nmea_message(self, message_id):
+    def get_nmea_message(self, message_id: bytes):
         serial_lines = self.lines_from_serial()
 
         for line in serial_lines:
             splited = line.split(b',')
             print(splited[0])
-            if splited[0] == ('$' + message_id):
+            if splited[0] == (b'$' + message_id):
                 return line
             else:
                 return 0
