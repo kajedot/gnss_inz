@@ -44,9 +44,9 @@ class UbloxCommunication:
         if serial_line != 0:
             splited = serial_line.split(b',')
 
-            latitude = splited[2].decode("utf-8")
+            latitude = splited[2].decode("utf-8")/100
             latitude_dir = splited[3].decode("utf-8")
-            longitude = splited[4].decode("utf-8")
+            longitude = splited[4].decode("utf-8")/100
             longitude_dir = splited[5].decode("utf-8")
 
             position = (latitude, latitude_dir, longitude, longitude_dir)
