@@ -21,6 +21,8 @@ class UbloxCommunication:
         serial_lines = self.lines_from_serial()
 
         for line in serial_lines:
+            print(serial_lines)
+            print(type(serial_lines))
             splited = line.split(",")
             if splited[0] == ('$' + message_id):
                 return line
@@ -30,6 +32,9 @@ class UbloxCommunication:
     def check_fix_mode(self):
 
         serial_lines = self.lines_from_serial()
+
+        print(serial_lines)
+        print(type(serial_lines))
 
         if serial_lines:
             splited = serial_lines.split(",")
