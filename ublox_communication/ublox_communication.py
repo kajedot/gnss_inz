@@ -13,7 +13,9 @@ class UbloxCommunication:
 
             for i in range(20):
                 try:
-                    lines.add(port.readline())
+                    line = port.readline()
+                    print(line)
+                    lines.add(line)
                 except (ValueError, IOError) as err:
                     print(err)
                 finally:
