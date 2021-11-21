@@ -32,7 +32,7 @@ class UbloxCommunication:
 
         if serial_line:
             splited = serial_line.split(b',')
-            return splited[6]  # fix info is on the 6th position
+            return splited[6].decode("utf-8")  # fix info is on the 6th position
 
         return 0
 
