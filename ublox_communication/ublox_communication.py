@@ -7,34 +7,40 @@ class UbloxCommunication:
     def __init__(self):
         self.fix = 0
 
-    def listen(self):
+    def lines_from_serial(self):
+        lines = set()
+        with serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1) as port:
 
-        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
-        gps = UbloxGps(port)
+            for i in range(20):
+                try:
+                    lines.add(port.readline())
+                except (ValueError, IOError) as err:
+                    print(err)
+                finally:
+                    port.close()
 
-        response = ""
+        return lines
 
-        try:
-            response = gps.stream_nmea()
+    def get_nmea_message(self, message_id):
+        serial_lines = self.lines_from_serial()
 
-        except (ValueError, IOError) as err:
-            print(err)
-
-        finally:
-            port.close()
-
-        return response
+        for line in serial_lines:
+            splited = serial_lines.split(",")
+            if splited[0] == ('$' + message_id):
+                return line
+            else:
+                return 0
 
     def check_fix_mode(self):
 
-        heard = self.listen()
+        serial_lines = self.lines_from_serial()
 
-        if heard:
-            splited = heard.split(",")
+        if serial_lines:
+            splited = serial_lines.split(",")
 
             if splited[0] == "$GNGGA":
                 self.fix = splited[6]  # fix info is on the 6th position
-                print(heard)
+                print(serial_lines)
 
     def get_position(self):
 
