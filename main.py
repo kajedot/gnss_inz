@@ -9,8 +9,8 @@ def main():
         #ublox_comm.check_fix_mode()
 
         #print(ublox_comm.get_position())
-        print(ublox_comm.get_nmea_message(b'GNGGA'))
-        print("\nFix mode: " + str(ublox_comm.get_fix_mode()))
+        print("\n" + ublox_comm.get_nmea_message(b'GNGGA'))
+        print("Fix mode: " + str(ublox_comm.get_fix_mode()))
         print(ublox_comm.get_position())
 
 
