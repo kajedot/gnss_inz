@@ -43,12 +43,13 @@ class UbloxCommunication:
 
         if serial_line != 0:
             splited = serial_line.split(b',')
-
-            if splited[2]:
-                latitude = float(splited[2])/100
-                latitude = latitude//1 + (latitude % 1)/0.6
+            # GNGGA pos 2: ddmm.mm, 3: N/S, 4: ddmm.mm 5: E/W
+            if splited[2]: # check if ublox is receiving position
+                latitude = round( float(splited[2])/100, 7 )  # /100 for dd.mmmm
+                latitude = latitude//1 + (latitude % 1)/0.6  # dd + 0.mmmm/0.6
                 latitude_dir = splited[3].decode("utf-8")
-                longitude = float(splited[4])/100
+
+                longitude = round( float(splited[4])/100, 7 )
                 longitude = longitude//1 + (longitude % 1) / 0.6
                 longitude_dir = splited[5].decode("utf-8")
 
