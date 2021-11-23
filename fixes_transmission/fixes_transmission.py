@@ -22,7 +22,6 @@ class FixesTransmissionServer:
         print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
 
     def reciver_loop(self, cs):
-
         while True:
             try:
                 # keep listening for a message from `cs` socket
@@ -33,7 +32,7 @@ class FixesTransmissionServer:
             except Exception as e:
                 print(f"[!] Error: {e}")
                 self.client_sockets.remove(cs)
-
+    """ while True: """
     def connections_listener(self):
         # we keep listening for new connections all the time
         client_socket, client_address = self.tcp_socket.accept()
