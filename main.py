@@ -4,11 +4,11 @@ from ublox_communication.ublox_communication import UbloxCommunication
 
 def main():
     ublox_comm = UbloxCommunication()
+    fixes_trans = FixesTransmissionServer()
 
     while 1:
-        #ublox_comm.check_fix_mode()
+        fixes_trans.connections_listener(ublox_comm)
 
-        #print(ublox_comm.get_position())
         print()
         print(ublox_comm.get_nmea_message(b'GNGGA'))
         print("Fix mode: " + str(ublox_comm.get_fix_mode()))
