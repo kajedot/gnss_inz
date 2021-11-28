@@ -4,10 +4,10 @@ from ublox_communication.ublox_communication import UbloxCommunication
 
 def main():
     ublox_comm = UbloxCommunication()
-    fixes_trans = FixesTransmissionServer()
+    fixes_trans = FixesTransmissionServer(ublox_comm)
 
     while 1:
-        fixes_trans.connections_listener(ublox_comm)
+        fixes_trans.connections_listener()
 
         print()
         print(ublox_comm.get_nmea_message(b'GNGGA'))
