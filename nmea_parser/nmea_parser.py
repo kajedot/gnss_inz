@@ -5,7 +5,7 @@ from ublox_gps import UbloxGps
 class NmeaParser:
 
     def __init__(self):
-        self.port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+        self.port = serial.Serial('/dev/ttyACM1', baudrate=38400, timeout=1)
 
     def get_raw(self):
         line_bytes = None
@@ -38,7 +38,7 @@ class NmeaParser:
     
     def listen(self):
 
-        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+        port = serial.Serial('/dev/ttyACM1', baudrate=38400, timeout=1)
         gps = UbloxGps(port)
 
         response = ""
@@ -57,7 +57,7 @@ class NmeaParser:
 
     def get_position(self):
 
-        port = serial.Serial('/dev/ttyACM0', baudrate=38400, timeout=1)
+        port = serial.Serial('/dev/ttyACM1', baudrate=38400, timeout=1)
         gps = UbloxGps(port)
 
         position = (0, 0)
