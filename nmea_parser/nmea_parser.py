@@ -4,9 +4,9 @@ from ublox_gps import UbloxGps
 
 class NmeaParser:
 
-    def __init__(self):
+    def __init__(self, dev_path="/dev/ttyACM0", bauds=38400):
         # initialize communication with u-blox ZED-F9P module
-        self.port = serial.Serial('/dev/ttyACM1', baudrate=38400, timeout=1)
+        self.port = serial.Serial(dev_path, baudrate=bauds, timeout=1)
 
     def get_raw(self):
         line_bytes = None
