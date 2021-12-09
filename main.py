@@ -21,7 +21,7 @@ def main():
 def get_arguments():
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("-d", "--device", required=False,
-                            help="path to the u-blox base device (default. '/dev/ttyACM0')")
+                            help="path to the u-blox base device (default: '/dev/ttyACM0')")
     arg_parser.add_argument("-b", "--baudrate", required=False,
                             help="baud rate of transmission with the u-blox base device (default: 38400)")
     arg_parser.add_argument("-s", "--server", required=True,
