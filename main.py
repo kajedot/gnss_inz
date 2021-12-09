@@ -6,8 +6,6 @@ def main():
     ublox_comm = UbloxCommunication()
     fixes_trans = FixesTransmissionServer(ublox_comm)
 
-    fixes_trans.connections_listener()
-
     while 1:
 
         print()
