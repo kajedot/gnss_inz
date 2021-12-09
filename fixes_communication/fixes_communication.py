@@ -3,7 +3,7 @@ import socket
 
 class FixesCommunication:
 
-    def __init__(self, server_ip="192.168.1.103", server_port=5002):
+    def __init__(self, server_ip, server_port):
 
         server_ip = "192.168.1.103"
         server_port = 5002

@@ -20,13 +20,13 @@ def main():
 
 def get_arguments():
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("-d", "--device", required=False,
+    arg_parser.add_argument("-d", "--device", required=False, default='/dev/ttyACM0',
                             help="path to the u-blox base device (default: '/dev/ttyACM0')")
-    arg_parser.add_argument("-b", "--baudrate", required=False,
+    arg_parser.add_argument("-b", "--baudrate", required=False, default=38400,
                             help="baud rate of transmission with the u-blox base device (default: 38400)")
     arg_parser.add_argument("-s", "--server", required=True,
                             help="server's (rover's) ip address")
-    arg_parser.add_argument("-p", "--port", required=False,
+    arg_parser.add_argument("-p", "--port", required=False, default=5002,
                             help="server's port (default: 5002)")
     return vars(arg_parser.parse_args())
 
