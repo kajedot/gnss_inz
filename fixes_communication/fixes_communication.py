@@ -10,7 +10,7 @@ class FixesCommunication:
 
         # initialization of the TCP socket
         self.tcp_socket = socket.socket()
-        print(f"Connecting to {server_ip}:{server_port}...")
+        print(f"Connecting to rover @ {server_ip}:{server_port}...")
         # connect to the server
         self.tcp_socket.connect((server_ip, server_port))
         print("Connected successfully")
