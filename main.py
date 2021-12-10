@@ -1,7 +1,7 @@
 import argparse
 
 from module_comm.module_comm import ModuleCommunication
-from fixes_communication.fixes_communication import FixesCommunication
+from fixes_comm.fixes_comm import FixesCommunication
 
 
 def main():
@@ -21,6 +21,7 @@ def main():
 
 def get_arguments():
     arg_parser = argparse.ArgumentParser()
+    #  definitions of command-line arguments
     arg_parser.add_argument("-d", "--device", required=False, default='/dev/ttyACM0',
                             help="path to the u-blox base device (default: '/dev/ttyACM0')")
     arg_parser.add_argument("-b", "--baudrate", required=False, default=38400,
