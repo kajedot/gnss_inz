@@ -2,7 +2,7 @@ import serial
 from ublox_gps import UbloxGps
 
 
-class NmeaParser:
+class ModuleCommunication:
 
     def __init__(self, dev_path, bauds):
         # initialize communication with u-blox ZED-F9P module

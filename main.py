@@ -1,20 +1,21 @@
 import argparse
 
-from nmea_parser.nmea_parser import NmeaParser
+from module_comm.module_comm import ModuleCommunication
 from fixes_communication.fixes_communication import FixesCommunication
 
 
 def main():
     args = get_arguments()  # firstly manage command-line arguments
 
-    nmea_parser = NmeaParser(args['device'], args['baudrate'])
+    module_comm = ModuleCommunication(args['device'], args['baudrate'])
     communication = FixesCommunication(args['server'], args['port'])
 
     while 1:
-
-        raw = nmea_parser.get_raw()
+        raw = module_comm.get_raw()  # constantly get lines with fixes from serial port
         if raw:
-            print(raw)
+            if args['verbose']:
+                print(raw)
+
             communication.send_fix(raw)
 
 
@@ -28,6 +29,8 @@ def get_arguments():
                             help="server's (rover's) ip address")
     arg_parser.add_argument("-p", "--port", required=False, default=5002,
                             help="server's port (default: 5002)")
+    arg_parser.add_argument("-v", "--verbose", required=False, action='store_true',
+                            help="print raw fixes data for the diagnostic purposes")
     return vars(arg_parser.parse_args())
 
 
