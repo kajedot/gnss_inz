@@ -8,14 +8,15 @@ def main():
     args = get_arguments()  # firstly manage command−line arguments
 
     ublox_comm = UbloxCommunication(args['device'], args['baudrate'])
-    fixes_trans = FixesTransmissionServer(ublox_comm, args['server'], args['port'])
+    fixes_trans = FixesTransmissionServer(ublox_comm, args['server'], args['port'], args['verbose'])
 
     while 1:
-
         print()
-        print(ublox_comm.get_nmea_message(b'GNGGA'))
-        print("Fix mode: " + str(ublox_comm.get_fix_mode()))
-        print(ublox_comm.get_position())
+        if args['verbose']:
+            print(ublox_comm.get_nmea_message(b'GNGGA'))
+        else:
+            print("Fix mode: " + str(ublox_comm.get_fix_mode()))
+            print(ublox_comm.get_position())
 
 
 def get_arguments():
@@ -27,6 +28,7 @@ def get_arguments():
     arg_parser.add_argument("-p", "--port", required=False, default=5002, help="server's port (default: 5002)")
     arg_parser.add_argument("-v", "--verbose", required=False, action='store_true', help="print received raw fixes data for the diagnostic purposes")  # store_true for arg. without value
     return vars(arg_parser.parse_args())
+
 
 if __name__ == '__main__':
     main()

@@ -4,9 +4,10 @@ from threading import Thread
 
 class FixesTransmissionServer:
 
-    def __init__(self, ublox_comm, server_ip, server_port):
+    def __init__(self, ublox_comm, server_ip, server_port, verbose):
         self.ublox_comm = ublox_comm
         self.client_sockets = set()
+        self.verbose = verbose
 
         # create a TCP socket
         self.tcp_socket = socket.socket()
@@ -35,7 +36,8 @@ class FixesTransmissionServer:
             try:
                 # keep listening for a message from the client's socket
                 msg = client_socket.recv(1024)
-                print(msg)
+                if self.verbose:
+                    print(msg)
                 # and send it to the rover's serial port
                 self.ublox_comm.write(msg)
             except Exception as e:
