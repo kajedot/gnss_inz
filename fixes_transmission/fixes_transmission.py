@@ -4,12 +4,9 @@ from threading import Thread
 
 class FixesTransmissionServer:
 
-    def __init__(self, ublox_comm):
+    def __init__(self, ublox_comm, server_ip, server_port):
         self.ublox_comm = ublox_comm
         self.client_sockets = set()
-
-        server_ip = "0.0.0.0"
-        server_port = 5002
 
         # create a TCP socket
         self.tcp_socket = socket.socket()
