@@ -31,7 +31,7 @@ def get_arguments():
     arg_parser.add_argument("-p", "--port", required=False, default=5002,
                             help="server's port (default: 5002)")
     arg_parser.add_argument("-v", "--verbose", required=False, action='store_true',
-                            help="print raw fixes data for the diagnostic purposes")
+                            help="print raw fixes data for the diagnostic purposes")  # store_true for arg. without value
     return vars(arg_parser.parse_args())
 
 
