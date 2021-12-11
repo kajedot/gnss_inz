@@ -22,7 +22,7 @@ class FixesTransmissionServer:
 
     def accept_clients(self):
         client_socket, client_address = self.tcp_socket.accept()
-        print(f"{client_address} connected")
+        print(f"RTK base {client_address} connected")
         # add recently connected client to the collection of clients
         self.client_sockets.add(client_socket)
         # start constantly listening for the new messages on the separate thread
