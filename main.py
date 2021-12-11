@@ -14,9 +14,9 @@ def main():
         print()
         if args['verbose']:
             print(ublox_comm.get_nmea_message(b'GNGGA'))
-        else:
-            print("Fix mode: " + str(ublox_comm.get_fix_mode()))
-            print(ublox_comm.get_position())
+
+        print("Fix mode: " + str(ublox_comm.get_fix_mode()))
+        print(ublox_comm.get_position())
 
 
 def get_arguments():
