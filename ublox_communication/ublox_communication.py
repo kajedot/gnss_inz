@@ -47,11 +47,11 @@ class UbloxCommunication:
             splited = serial_line.split(b',')
 
             # GNGGA position 2: ddmm.mm, 3: N/S, 4: ddmm.mm 5: E/W
-            # (d - degree, m - minute, N/E/S/W - cardinal directions)
+            # (d - degree, m - minute, N/E/S/W - hemisphere)
 
             if splited[2]:  # check if ublox is receiving position at all
 
-                # conversion ddmm.mm to dd.mmmm:
+                # conversion ddmm.mm to dd.mmmm: 1215
                 latitude = float(splited[2])/100
 
                 # dd + 0.mmmm/0.6 for conversion minutes to degree fraction:
