@@ -15,8 +15,12 @@ def main():
         if args['verbose']:
             print(ublox_comm.get_nmea_message(b'GNGGA'))
 
-        print("Fix mode: " + str(ublox_comm.get_fix_mode()))
-        print(ublox_comm.get_position())
+        if args['csv']:
+            latitude, latitude_dir, longitude, longitude_dir = ublox_comm.get_position()
+            print(f"{ublox_comm.get_fix_mode()},{latitude},{latitude_dir},{longitude},{longitude_dir}")
+        else:
+            print("Fix mode: " + str(ublox_comm.get_fix_mode()))
+            print(ublox_comm.get_position())
 
 
 def get_arguments():
@@ -27,6 +31,7 @@ def get_arguments():
     arg_parser.add_argument("-s", "--server", required=False, default='0.0.0.0', help="ip address on which the server should run (default: 0.0.0.0)")
     arg_parser.add_argument("-p", "--port", required=False, default=5002, help="server's port (default: 5002)")
     arg_parser.add_argument("-v", "--verbose", required=False, action='store_true', help="print received raw fixes data for the diagnostic purposes")  # store_true for arg. without value
+    arg_parser.add_argument("-c", "--csv", required=False, action='store_true', help="print data in csv format: fix, latitude, latitude_dir, longitude, longitude_dir")
     return vars(arg_parser.parse_args())
 
 
