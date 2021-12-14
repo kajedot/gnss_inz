@@ -1,5 +1,4 @@
 import serial
-from ublox_gps import UbloxGps
 
 
 class ModuleCommunication:
@@ -18,14 +17,9 @@ class ModuleCommunication:
 
         return line_bytes
 
-    def __del__(self):
-        self.port.close()
-
-    """not used anymore:"""
-
     def get_fix_mode(self):
 
-        heard = self.listen()
+        heard = self.get_raw()
         fix = 0
         splited = []
 
@@ -38,43 +32,5 @@ class ModuleCommunication:
 
         return fix
 
-    """Methods using UbloxGps Qwiic library - left for test purposes:"""
-    
-    def listen(self):
-
-        port = serial.Serial('/dev/ttyACM1', baudrate=38400, timeout=1)
-        gps = UbloxGps(port)
-
-        response = ""
-
-        try:
-            #print(gps.stream_nmea())
-            response = gps.stream_nmea()
-
-        except (ValueError, IOError) as err:
-            print(err)
-
-        finally:
-            port.close()
-
-        return response
-
-    def get_position(self):
-
-        port = serial.Serial('/dev/ttyACM1', baudrate=38400, timeout=1)
-        gps = UbloxGps(port)
-
-        position = (0, 0)
-
-        try:
-            geo = gps.geo_coords()
-            position = (geo.lon, geo.lat)
-        except (ValueError, IOError) as err:
-            print(err)
-
-        finally:
-            port.close()
-
-        return position
-
-
+    def __del__(self):
+        self.port.close()
