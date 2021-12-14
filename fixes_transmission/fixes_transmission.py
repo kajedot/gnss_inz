@@ -17,7 +17,7 @@ class FixesTransmissionServer:
         self.tcp_socket.bind((server_ip, server_port))
         # start listening for the upcoming connections (with queue of 1 connection)
         self.tcp_socket.listen(1)
-        print(f"Listening as {server_ip}:{server_port}")
+        print(f"Listening as {server_ip}:{server_port}. Waiting for the base to connect...")
         self.accept_clients()
 
     def accept_clients(self):
