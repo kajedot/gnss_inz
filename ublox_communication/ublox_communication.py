@@ -1,5 +1,4 @@
 import serial
-from ublox_gps import UbloxGps
 
 
 class UbloxCommunication:
@@ -73,21 +72,3 @@ class UbloxCommunication:
         port = serial.Serial(self.device, baudrate=self.bauds, timeout=1)
 
         port.write(data)
-
-    def get_position_qwick(self):
-
-        port = serial.Serial(self.device, baudrate=self.bauds, timeout=1)
-        gps = UbloxGps(port)
-
-        position = (0, 0)
-
-        try:
-            geo = gps.geo_coords()
-            position = (geo.lat, geo.lon)
-        except (ValueError, IOError) as err:
-            print(err)
-
-        finally:
-            port.close()
-
-        return position
