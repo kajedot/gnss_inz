@@ -18,7 +18,7 @@ def main():
 
         if args['csv']:
             latitude, latitude_dir, longitude, longitude_dir = ublox_comm.get_position()
-            print(f"{ublox_comm.get_fix_mode()},{latitude},{latitude_dir},{longitude},{longitude_dir},{print(ublox_comm.get_nmea_message(b'GNGGA'))}")
+            print(f"{ublox_comm.get_fix_mode()},{latitude},{latitude_dir},{longitude},{longitude_dir},{ublox_comm.get_nmea_message(b'GNGGA')}")
         else:
             print("Fix mode: " + str(ublox_comm.get_fix_mode()))
             print(ublox_comm.get_position())
