@@ -9,7 +9,7 @@ def main():
 
     ublox_comm = UbloxCommunication(args['device'], args['baudrate'])
 
-    if args['nofixes']:
+    if not args['nofixes']:
         fixes_trans = FixesTransmissionServer(ublox_comm, args['server'], args['port'], args['verbose'])
 
     while True:
